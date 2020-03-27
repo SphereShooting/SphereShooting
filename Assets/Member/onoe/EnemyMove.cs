@@ -25,7 +25,7 @@ public class EnemyMove : MonoBehaviour
         GuruGuru2,
         Random
     }
-    [SerializeField] Movement movement = Movement.YuraYura;
+    [SerializeField] Movement movement = Movement.Random;
 
     // Start is called before the first frame update
     void Start()
@@ -38,10 +38,10 @@ public class EnemyMove : MonoBehaviour
             player = GameObject.Find("Player");
             mainCamera = player.transform.Find("Main Camera").gameObject;
             hana = transform.Find("Hana");
-            if (movement == Movement.Random)
-            {
-                movement = (Movement)Random.Range(0, 4);
-            }
+        }
+        if (movement == Movement.Random)
+        {
+            movement = (Movement)Random.Range(0, 4);
         }
     }
 
@@ -55,10 +55,7 @@ public class EnemyMove : MonoBehaviour
         this.player = player;
         mainCamera = player.transform.Find("Main Camera").gameObject;
         hana = transform.Find("Hana");
-        if (movement == Movement.Random)
-        {
-            movement = (Movement)Random.Range(0, 4);
-        }
+        movement = Movement.Random;
     }
 
     // Update is called once per frame

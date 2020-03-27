@@ -11,7 +11,7 @@ public class TestBOSSPlayer : MonoBehaviour
     //[SerializeField] GameObject gp;
     //[SerializeField] GameObject bullet;
     [SerializeField] GameObject GameClearOrOver;
-    float PlayerLife = 1.0f;
+    [HideInInspector] public float PlayerLife = 1.0f;
     [SerializeField] Slider PlayerSlider;
 
     /*
