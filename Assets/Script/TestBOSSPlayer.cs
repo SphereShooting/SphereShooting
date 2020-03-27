@@ -55,6 +55,8 @@ public class TestBOSSPlayer : MonoBehaviour
             Debug.Log("当たった");
             PlayerLife -= 0.1f;
             PlayerSlider.value = PlayerLife;
+            //ダメージ音再生
+            SoundController.soundNumber = 3;
             if (PlayerLife <= 0)
             {
                 Results.SetActive(true);

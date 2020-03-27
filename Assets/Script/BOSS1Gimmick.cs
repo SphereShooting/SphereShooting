@@ -18,6 +18,8 @@ public class BOSS1Gimmick : MonoBehaviour
 
             OverBossLife.SendMessage("GetOverBossLife",0.01f);
 
+            SoundController.soundNumber = 2;
+
             if (BOSSLife <= 0)
             {
                 EnemyMove.score += 1000;
@@ -28,6 +30,8 @@ public class BOSS1Gimmick : MonoBehaviour
                 {
                     Destroy(obj);
                 }
+
+                SoundController.soundNumber = 5;
                 Destroy(this.gameObject);
             }
         } 

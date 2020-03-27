@@ -19,6 +19,7 @@ public class SplitSphereScript : MonoBehaviour
         //Instantiate(SplitSphere, this.transform.position, Quaternion.identity);
         Obj = Instantiate(SplitSphere, this.transform.position, Quaternion.identity);
         Obj.transform.parent = GameObject.Find("Planet").transform;
+        SoundController.soundNumber = 4;
 
     }
 }

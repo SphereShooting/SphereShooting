@@ -6,8 +6,13 @@ using System.Linq;
 public class SoundController : MonoBehaviour
 {
     public static int soundNumber = 0;
-    public AudioClip enemyDeath;
-    public AudioClip enemyShot;
+    [SerializeField] AudioClip enemyDeath;
+    [SerializeField] AudioClip enemyShot;
+    [SerializeField] AudioClip playerDamege;
+    [SerializeField] AudioClip boss1Shot;
+    [SerializeField] AudioClip boss1Death;
+    [SerializeField] AudioClip boss1Summon;
+
     AudioSource audioSource;
 
     AudioClip[] AudioArray = new AudioClip[5];
@@ -18,6 +23,10 @@ public class SoundController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         AudioArray[1] = enemyDeath;
         AudioArray[2] = enemyShot;
+        AudioArray[3] = playerDamege;
+        AudioArray[4] = boss1Shot;
+        AudioArray[5] = boss1Death;
+        AudioArray[6] = boss1Summon;
 
     }
 

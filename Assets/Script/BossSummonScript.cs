@@ -20,6 +20,7 @@ public class BossSummonScript : MonoBehaviour
         {
             if (!isCalledOnce)
             {
+                SoundController.soundNumber = 6;
                 StartCoroutine("warningUp");
                 Debug.Log("ゲージがたまった");
                 BOSS1.SetActive(true);
@@ -36,6 +37,7 @@ public class BossSummonScript : MonoBehaviour
 
     IEnumerator warningUp()
     {
+        
         OverBossLife.SetActive(true);
         warnig.SetActive(true);
         //Time.timeScale = 0f;
