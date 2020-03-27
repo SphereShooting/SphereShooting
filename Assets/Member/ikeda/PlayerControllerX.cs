@@ -45,27 +45,28 @@ namespace GodTouches
             {
                 Debug.Log("Idle");
                 vY = -0.2f;
+                vX = 0f;
                 
             }else if (Input.GetMouseButton(0))
             {
                 Debug.Log("Idle");
                 vY = -0.2f;
-                
+                vX = 0f;
             }
 
             if(sPos > ePos && trigger)
             {
-                vX += 0.3f;
+                vX = Mathf.Clamp(vX += 0.3f, -1.0f, 1.0f);
                 trigger = false;
                 Debug.Log(vX);
             }
             else if(sPos < ePos && trigger)
             {
-                vX -= 0.3f;
+                vX = Mathf.Clamp(vX -= 0.3f, -1.0f, 1.0f);
                 trigger = false;
                 Debug.Log(vX);
             }
-            rb.angularVelocity = new Vector3(vY, vX, vZ);
+            rb.angularVelocity = new Vector3(vY, vZ, vX);
         }
     }
 }
