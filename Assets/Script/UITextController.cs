@@ -9,6 +9,7 @@ public class UITextController : MonoBehaviour
 
     void Start()
     {
+        SoundController.soundNumber = 8;
         StartCoroutine("TextSetActive");
     }
 

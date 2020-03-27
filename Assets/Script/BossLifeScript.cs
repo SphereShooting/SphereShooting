@@ -10,6 +10,7 @@ public class BossLifeScript : MonoBehaviour
     [SerializeField] GameObject TitleButton;
     [SerializeField] GameObject NextStageButton;
     [SerializeField] GameObject GameClearOrOver;
+    [SerializeField] GameObject split2Boss1;
     float OverBossLife = 1.0f;
 
     void GetOverBossLife(float damege)
@@ -20,6 +21,7 @@ public class BossLifeScript : MonoBehaviour
 
         if (BossLifeSlider.value <= 6.705523e-07)
         {
+            split2Boss1.SetActive(false);
             Results.SetActive(true);
             TitleButton.SetActive(true);
             NextStageButton.SetActive(true);

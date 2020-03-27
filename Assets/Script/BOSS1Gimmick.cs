@@ -18,7 +18,7 @@ public class BOSS1Gimmick : MonoBehaviour
 
             OverBossLife.SendMessage("GetOverBossLife",0.01f);
 
-            SoundController.soundNumber = 2;
+            SoundController.soundNumber = 1;
 
             if (BOSSLife <= 0)
             {

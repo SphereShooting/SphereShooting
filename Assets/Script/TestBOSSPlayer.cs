@@ -59,6 +59,7 @@ public class TestBOSSPlayer : MonoBehaviour
             SoundController.soundNumber = 3;
             if (PlayerLife <= 0)
             {
+                SoundController.soundNumber = 7;
                 Results.SetActive(true);
                 TitleButton.SetActive(true);
                 RetryButton.SetActive(true);

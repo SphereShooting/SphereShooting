@@ -7129,6 +7129,8 @@ MonoBehaviour:
   boss1Shot: {fileID: 8300000, guid: fd5ce4c71b8c7d943ae3922fb6b93bcc, type: 3}
   boss1Death: {fileID: 8300000, guid: 217f624132c2987469a856f267679a31, type: 3}
   boss1Summon: {fileID: 8300000, guid: 877e4bbbe18bfa14abcc2e2f83c607a1, type: 3}
+  playerDeath: {fileID: 8300000, guid: a2228f3c43460014987c5dcd80c77448, type: 3}
+  gameStart: {fileID: 8300000, guid: 43d677b5fcb631445bd080a23602fbb6, type: 3}
 --- !u!82 &1221624926
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10078,6 +10080,7 @@ MonoBehaviour:
   TitleButton: {fileID: 1633118266}
   NextStageButton: {fileID: 441246164}
   GameClearOrOver: {fileID: 595347775}
+  split2Boss1: {fileID: 209971285}
 --- !u!114 &1587800229
 MonoBehaviour:
   m_ObjectHideFlags: 0
