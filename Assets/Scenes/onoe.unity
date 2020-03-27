@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70b790bc70ecc3418caa3abb5b884ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deltaSpin: 0
 --- !u!135 &968816773
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -442,6 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 9122175753688036525, guid: a15899827be547847aec0e2b2214d6c9, type: 3}
   player: {fileID: 2142838197}
+  eNum: 0
 --- !u!1 &1041117361
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +751,8 @@ MonoBehaviour:
   bullet: {fileID: 3399134801637456897, guid: 4976d177cdecdeb449d484a0147ebe5c, type: 3}
   planet: {fileID: 968816770}
   player: {fileID: 2142838197}
+  auto: 1
+  autoFireRate: 1
 --- !u!65 &2142838199
 BoxCollider:
   m_ObjectHideFlags: 0

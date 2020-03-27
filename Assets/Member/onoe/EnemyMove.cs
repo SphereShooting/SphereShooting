@@ -5,10 +5,17 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     GameObject planet;
+    GameObject player;
     GameObject mainCamera;
     public GameObject bullet;
     Transform hana;
     bool movin = false;
+    EnemyGenerator eG;
+    public static float terminationGauge = 0;
+    public static int score = 0;
+    EnemyBullet eB;
+    bool isInstantiated = false;
+    
 
     public enum Movement
     {
@@ -18,18 +25,37 @@ public class EnemyMove : MonoBehaviour
         GuruGuru2,
         Random
     }
-    [SerializeField] Movement movement = Movement.YuraYura;
+    [SerializeField] Movement movement = Movement.Random;
 
     // Start is called before the first frame update
     void Start()
     {
-        planet = transform.parent.gameObject;
-        mainCamera = GameObject.Find("Player").transform.Find("Main Camera").gameObject;
-        hana = transform.Find("Hana");
+        if (!isInstantiated)
+        {
+            planet = transform.parent.gameObject;
+            eG = planet.GetComponent<EnemyGenerator>();
+            eB = bullet.GetComponent<EnemyBullet>();
+            player = GameObject.Find("Player");
+            mainCamera = player.transform.Find("Main Camera").gameObject;
+            hana = transform.Find("Hana");
+        }
         if (movement == Movement.Random)
         {
             movement = (Movement)Random.Range(0, 4);
         }
+    }
+
+    public void Instantiate(GameObject enemy, Vector3 position, Quaternion rotation, GameObject parent, GameObject player, EnemyBullet eb, EnemyGenerator eg)
+    {
+        isInstantiated = true;
+        this.planet = parent;
+        Instantiate(enemy, position, rotation, parent.transform);
+        this.eB = eb;
+        this.eG = eg;
+        this.player = player;
+        mainCamera = player.transform.Find("Main Camera").gameObject;
+        hana = transform.Find("Hana");
+        movement = Movement.Random;
     }
 
     // Update is called once per frame
@@ -47,7 +73,7 @@ public class EnemyMove : MonoBehaviour
                 transform.RotateAround(planet.transform.position, mainCamera.transform.up, 1);
                 break;
             case Movement.Tombo:
-                transform.RotateAround(planet.transform.position, mainCamera.transform.right, 1);
+                transform.RotateAround(planet.transform.position, mainCamera.transform.right, planet.GetComponent<SpinPlanet>().DeltaSpin);
                 if (!movin) { movin = true; StartCoroutine(Tombo()); }
                 break;
         }
@@ -85,8 +111,18 @@ public class EnemyMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        //エネミーに弾が当たった時の処理
+        if(other.tag == "Bullet")
         {
+            //terminationGaugeを増やす処理
+            terminationGauge += 1;
+
+            score += 100;
+
+            //エネミー爆破音を再生
+            SoundController.soundNumber = 1;
+
+            eG.ENum--;
             Destroy(this.gameObject);
         }
 
@@ -95,23 +131,29 @@ public class EnemyMove : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.up);
         }
 
-        if (other.gameObject.name == "ShootZone") { Debug.Log("started"); StartCoroutine("Shoot"); }
+        if (other.gameObject.name == "ShootZone") { StartCoroutine("Shoot"); }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "ShootZone") { Debug.Log("stopped"); StopCoroutine("Shoot"); }
+        if (other.gameObject.name == "ShootZone") { StopCoroutine("Shoot"); }
     }
 
     IEnumerator Shoot()
     {
         while (true)
         {
-            Instantiate(bullet, hana.position, hana.rotation, planet.transform); Debug.Log("1");
+            eB.Instantiate(bullet, hana.position, hana.rotation, planet, planet, player); Debug.Log("1");
+            //発射音を再生
+            SoundController.soundNumber = 2;
             yield return new WaitForSeconds(2.0f);
-            Instantiate(bullet, hana.position, hana.rotation, planet.transform); Debug.Log("2");
+            eB.Instantiate(bullet, hana.position, hana.rotation, planet, planet, player); Debug.Log("2");
+            //発射音を再生
+            SoundController.soundNumber = 2;
             yield return new WaitForSeconds(1.0f);
-            Instantiate(bullet, hana.position, hana.rotation, planet.transform); Debug.Log("3");
+            eB.Instantiate(bullet, hana.position, hana.rotation, planet, planet, player); Debug.Log("3");
+            //発射音を再生
+            SoundController.soundNumber = 2;
             yield return new WaitForSeconds(3.0f);
         }
     }

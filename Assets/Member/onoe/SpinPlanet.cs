@@ -5,11 +5,21 @@ using UnityEngine;
 public class SpinPlanet : MonoBehaviour
 {
     Rigidbody rb;
+    [HideInInspector] public float deltaSpin;
+    [HideInInspector] public float DeltaSpin{
+        get
+        {
+            return deltaSpin;
+        }
+    }
+    float eRot;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        deltaSpin = 0.0f;
+        eRot = transform.rotation.eulerAngles.x;
     }
 
     // Update is called once per frame
@@ -36,5 +46,7 @@ public class SpinPlanet : MonoBehaviour
         }
 
         rb.angularVelocity = new Vector3(-ssV, 0, -ssH);
+        deltaSpin = Mathf.Abs(transform.rotation.eulerAngles.x - eRot);
+        eRot = transform.rotation.eulerAngles.x;
     }
 }

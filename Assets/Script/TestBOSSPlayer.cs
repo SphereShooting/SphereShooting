@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class TestBOSSPlayer : MonoBehaviour
 {
-    [SerializeField] GameObject gp;
-    [SerializeField] GameObject bullet;
-    float PlayerLife = 1.0f;
+    [SerializeField] GameObject Results;
+    [SerializeField] GameObject TitleButton;
+    [SerializeField] GameObject RetryButton;
+    //[SerializeField] GameObject gp;
+    //[SerializeField] GameObject bullet;
+    [SerializeField] GameObject GameClearOrOver;
+    [HideInInspector] public float PlayerLife = 1.0f;
     [SerializeField] Slider PlayerSlider;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    /*
     void Update()
     {
 
@@ -47,12 +46,29 @@ public class TestBOSSPlayer : MonoBehaviour
 
         PlayerSlider.value = PlayerLife;
     }
+    */
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "BOSSBullet")
+        if (other.gameObject.tag == "BOSSBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "SmallBOSSBullet")
         {
+            Debug.Log("当たった");
             PlayerLife -= 0.1f;
+            PlayerSlider.value = PlayerLife;
+            //ダメージ音再生
+            SoundController.soundNumber = 3;
+            if (PlayerLife <= 0)
+            {
+                SoundController.soundNumber = 7;
+                Results.SetActive(true);
+                TitleButton.SetActive(true);
+                RetryButton.SetActive(true);
+                //Textコンポーネントを取得する
+                Text GameOver = GameClearOrOver.GetComponent<Text>();
+                GameOver.text = "GAME OVER";
+                SoundController.soundNumber = 9;
+                Time.timeScale = 0f;
+            }
         }
     }
 }

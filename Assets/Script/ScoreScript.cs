@@ -7,42 +7,36 @@ using UnityEngine.SceneManagement;
 
 public class ScoreScript : MonoBehaviour
 {   
-    public static int score = 0;
+    int score =0;
+    Text NowScore;
 
-    /*
+
+
+
     void Start()
     {
-        //シーンが終了してもこのオブジェクトは消えなくなる
-        DontDestroyOnLoad(this);
-        //シーン始めにOnSceneLoadedが走る処理
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        score = 0;
+        //Textコンポーネントを取得する
+        NowScore = gameObject.GetComponent<Text>();
     }
-    */
+    
 
-    private void FixedUpdate()
+    private void Update()
     {
-        OnScore(3);
+        //score += 1;
+        //NowScore.text = "Score:" + score.ToString();
+
+        NowScore.text = "Score:" + EnemyMove.score.ToString();
     }
 
 
 
     //Mainシーンの始めに走る
-    void OnSceneLoaded(Scene Main, LoadSceneMode mode)
+    void OnSceneLoaded(Scene kuroda, LoadSceneMode mode)
     {
         score = 0;
     }
 
-    //メッセージを受け取る
-    void OnScore(int num)
-    {
-        //scoreに受け取った値を追加する
-        score += num;
-
-        //Textコンポーネントを取得する
-        Text Score = gameObject.GetComponent<Text>();
-
-        //scoreをテキストとして表示する
-        Score.text = "Score:" + score.ToString();
-    }
+    
 }
 

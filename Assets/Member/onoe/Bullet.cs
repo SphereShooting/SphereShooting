@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    GameObject mainCamera;
-    GameObject planet;
-    GameObject player;
+    [HideInInspector] public GameObject mainCamera;
+    [HideInInspector] public GameObject planet;
+    [HideInInspector] public GameObject player;
     public float existFrame = 100;
     [Range(0.1f, 2.0f)]
     public float bulletSpeed = 1.0f;
@@ -14,10 +14,18 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        mainCamera = player.transform.Find("Main Camera").gameObject;
-        planet = GameObject.Find("Planet");
+        //player = GameObject.Find("Player");
+        //mainCamera = player.transform.Find("Main Camera").gameObject;
+        //planet = GameObject.Find("Planet");
         StartCoroutine(Movement());
+    }
+
+    public void Instantiate(GameObject bullet, Vector3 position, Quaternion rotation, GameObject planet, GameObject player)
+    {
+        this.planet = planet;
+        this.player = player;
+        mainCamera = player.transform.Find("Main Camera").gameObject;
+        Instantiate(bullet, position, rotation);
     }
 
     // Update is called once per frame
@@ -28,11 +36,9 @@ public class Bullet : MonoBehaviour
 
     IEnumerator Movement()
     {
-        Debug.Log("started");
         for(int i = 0; i < existFrame; i++)
         {
             transform.RotateAround(planet.transform.position, mainCamera.transform.right, bulletSpeed);
-            Debug.Log("spining");
             yield return null;
         }
         Destroy(this.gameObject);

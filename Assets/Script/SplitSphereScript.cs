@@ -5,7 +5,8 @@ using UnityEngine;
 public class SplitSphereScript : MonoBehaviour
 {
     [SerializeField] GameObject SplitSphere;
-    
+    GameObject Obj;
+
     void Start()
     {
         StartCoroutine("SplitSphereInstantiate");
@@ -15,6 +16,10 @@ public class SplitSphereScript : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
 
-        Instantiate(SplitSphere, this.transform.position, Quaternion.identity);
+        //Instantiate(SplitSphere, this.transform.position, Quaternion.identity);
+        Obj = Instantiate(SplitSphere, this.transform.position, Quaternion.identity);
+        Obj.transform.parent = GameObject.Find("Planet").transform;
+        SoundController.soundNumber = 4;
+
     }
 }

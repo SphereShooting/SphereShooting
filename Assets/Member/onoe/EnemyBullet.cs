@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    GameObject planet;
-    GameObject player;
+    [HideInInspector] public GameObject planet;
+    [HideInInspector] public GameObject player;
     Vector3 axis;
     public float existDistance = 100;
     [Range(0.1f, 2.0f)]
@@ -14,10 +14,15 @@ public class EnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        planet = GameObject.Find("Planet");
         axis = Vector3.Cross(transform.position - planet.transform.position, player.transform.position - planet.transform.position);
         StartCoroutine(Movement());
+    }
+
+    public void Instantiate(GameObject bullet, Vector3 position, Quaternion rotation, GameObject parent, GameObject planet, GameObject player)
+    {
+        this.planet = planet;
+        this.player = player;
+        Instantiate(bullet, position, rotation, parent.transform);
     }
 
     // Update is called once per frame
@@ -28,7 +33,7 @@ public class EnemyBullet : MonoBehaviour
 
     IEnumerator Movement()
     {
-        for(int i = 0; i < existDistance / bulletSpeed; i++)
+        for (int i = 0; i < existDistance / bulletSpeed; i++)
         {
             transform.RotateAround(planet.transform.position, axis, bulletSpeed);
             yield return null;
@@ -38,7 +43,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.name == "Player" || other.gameObject.name == "ResetNet")
         {
             Destroy(this.gameObject);
         }

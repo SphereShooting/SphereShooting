@@ -6,6 +6,7 @@ public class TentacleShot : MonoBehaviour
 {
     [SerializeField] float speed = 0.1f;
     bool shot;
+    [SerializeField] GameObject planet;
 
     void Start()
     {
@@ -17,7 +18,8 @@ public class TentacleShot : MonoBehaviour
     {
         if (shot == true)
         {
-            transform.position += transform.forward * speed;
+            //transform.position += transform.forward * speed;
+            transform.RotateAround(planet.transform.position, transform.right, 1);
         }
         
     }

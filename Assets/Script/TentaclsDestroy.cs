@@ -7,7 +7,7 @@ public class TentaclsDestroy : MonoBehaviour
     [SerializeField] float DestroyTime = 3.0f;
     void Start()
     {
-        StartCoroutine("DestroyTentacl");
+        //StartCoroutine("DestroyTentacl");
     }
 
     IEnumerator DestroyTentacl()
