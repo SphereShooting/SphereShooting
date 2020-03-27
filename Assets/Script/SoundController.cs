@@ -14,10 +14,12 @@ public class SoundController : MonoBehaviour
     [SerializeField] AudioClip boss1Summon;
     [SerializeField] AudioClip playerDeath;
     [SerializeField] AudioClip gameStart;
+    [SerializeField] AudioClip gameOver;
+    [SerializeField] AudioClip gameClear;
 
     AudioSource audioSource;
 
-    AudioClip[] AudioArray = new AudioClip[9];
+    AudioClip[] AudioArray = new AudioClip[10];
 
 
     void Start()
@@ -31,6 +33,8 @@ public class SoundController : MonoBehaviour
         AudioArray[6] = boss1Summon;
         AudioArray[7] = playerDeath;
         AudioArray[8] = gameStart;
+        AudioArray[9] = gameOver;
+        AudioArray[10] = gameClear;
 
     }
 

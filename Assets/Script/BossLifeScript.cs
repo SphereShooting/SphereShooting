@@ -21,6 +21,7 @@ public class BossLifeScript : MonoBehaviour
 
         if (BossLifeSlider.value <= 6.705523e-07)
         {
+            SoundController.soundNumber = 10 ;
             split2Boss1.SetActive(false);
             Results.SetActive(true);
             TitleButton.SetActive(true);

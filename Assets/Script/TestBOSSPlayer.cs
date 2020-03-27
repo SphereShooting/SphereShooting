@@ -66,6 +66,7 @@ public class TestBOSSPlayer : MonoBehaviour
                 //Textコンポーネントを取得する
                 Text GameOver = GameClearOrOver.GetComponent<Text>();
                 GameOver.text = "GAME OVER";
+                SoundController.soundNumber = 9;
                 Time.timeScale = 0f;
             }
         }

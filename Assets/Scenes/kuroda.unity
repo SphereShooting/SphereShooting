@@ -7131,6 +7131,8 @@ MonoBehaviour:
   boss1Summon: {fileID: 8300000, guid: 877e4bbbe18bfa14abcc2e2f83c607a1, type: 3}
   playerDeath: {fileID: 8300000, guid: a2228f3c43460014987c5dcd80c77448, type: 3}
   gameStart: {fileID: 8300000, guid: 43d677b5fcb631445bd080a23602fbb6, type: 3}
+  gameOver: {fileID: 8300000, guid: 2f3c9b38e2ff7d741b19c427e4e97206, type: 3}
+  gameClear: {fileID: 8300000, guid: 5bdea4d56566f5f4281720e3ba7fb60f, type: 3}
 --- !u!82 &1221624926
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10261,6 +10263,7 @@ MonoBehaviour:
   player: {fileID: 1628523131}
   auto: 1
   autoFireRate: 1
+  Heroics: 1
 --- !u!65 &1628523133
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10352,6 +10355,7 @@ MonoBehaviour:
   TitleButton: {fileID: 1633118266}
   RetryButton: {fileID: 1490912659}
   GameClearOrOver: {fileID: 595347775}
+  PlayerLife: 1
   PlayerSlider: {fileID: 1026179244}
 --- !u!1 &1633118266
 GameObject:
