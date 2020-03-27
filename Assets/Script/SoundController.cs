@@ -19,7 +19,7 @@ public class SoundController : MonoBehaviour
 
     AudioSource audioSource;
 
-    AudioClip[] AudioArray = new AudioClip[10];
+    AudioClip[] AudioArray = new AudioClip[11];
 
 
     void Start()
