@@ -50,7 +50,7 @@ public class TestBOSSPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "BOSSBullet" || other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "BOSSBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "SmallBOSSBullet")
         {
             Debug.Log("当たった");
             PlayerLife -= 0.1f;

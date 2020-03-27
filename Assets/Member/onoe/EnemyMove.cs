@@ -122,6 +122,9 @@ public class EnemyMove : MonoBehaviour
 
             score += 100;
 
+            //エネミー爆破音を再生
+            SoundController.soundNumber = 1;
+
             eG.ENum--;
             Destroy(this.gameObject);
         }
@@ -144,10 +147,16 @@ public class EnemyMove : MonoBehaviour
         while (true)
         {
             eB.Instantiate(bullet, hana.position, hana.rotation, planet, planet, player); Debug.Log("1");
+            //発射音を再生
+            SoundController.soundNumber = 2;
             yield return new WaitForSeconds(2.0f);
             eB.Instantiate(bullet, hana.position, hana.rotation, planet, planet, player); Debug.Log("2");
+            //発射音を再生
+            SoundController.soundNumber = 2;
             yield return new WaitForSeconds(1.0f);
             eB.Instantiate(bullet, hana.position, hana.rotation, planet, planet, player); Debug.Log("3");
+            //発射音を再生
+            SoundController.soundNumber = 2;
             yield return new WaitForSeconds(3.0f);
         }
     }
